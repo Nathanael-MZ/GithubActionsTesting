@@ -9,11 +9,11 @@ jobs:
     steps:
       - name: Write Test Data
         run: |
-          mkdir -p /test 
-          touch /test/data
-          echo "test data" >> /test/data
+          mkdir -p ${{ github.workspace }}/test 
+          touch ${{ github.workspace }}/test/data
+          echo "test data" >> ${{ github.workspace }}/test/data
       - name: Save Data
         uses: actions/cache/save@v4
         with:
-          path: /test
+          path: ${{ github.workspace }}/test
           key: testData.${{ github.ref_name }}
