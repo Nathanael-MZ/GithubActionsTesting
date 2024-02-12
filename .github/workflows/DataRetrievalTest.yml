@@ -11,7 +11,7 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: ${{ github.workspace }}/test
-          key: testData.${{ github.ref_name }}
+          key: testData.main
       - name: Write Test Data
         run: |
           cat ${{ github.workspace }}/test/data
