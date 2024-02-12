@@ -13,6 +13,12 @@ jobs:
           touch ${{ github.workspace }}/test/data
           echo "${{ github.ref_name }}" > ${{ github.workspace }}/test/data
           echo "test data" >> ${{ github.workspace }}/test/data
+      - name: Clean Cache
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh extension install actions/gh-actions-cache
+          gh actions-cache delete "testData.${{ github.ref_name }}" --confirm -R ${{ github.repository }}
       - name: Save Data
         uses: actions/cache/save@v4
         with:
