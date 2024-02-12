@@ -14,5 +14,4 @@ jobs:
           key: testData.${{ github.ref_name }}
       - name: Write Test Data
         run: |
-          echo ${{ github.workspace }}
           cat ${{ github.workspace }}/test/data
