@@ -1,17 +1,18 @@
-name: "Data storage test"
+name: "Data retrieval test"
 
 on:
   workflow_dispatch
 
 jobs:
-  save-data:
+  retrieve-data:
     runs-on: ubuntu-latest
     steps:
-      - name: Save Data
+      - name: Load Data
         uses: actions/cache/restore@v4
         with:
           path: ${{ github.workspace }}/test
           key: testData.${{ github.ref_name }}
       - name: Write Test Data
         run: |
+          echo ${{ github.workspace }}
           cat ${{ github.workspace }}/test/data
