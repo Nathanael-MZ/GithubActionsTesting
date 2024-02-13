@@ -15,7 +15,7 @@ jobs:
       - name: Load Data
         uses: actions/cache/restore@v4
         with:
-          path: ${{ github.workspace }}/test
+          path: ${{ github.workspace }}/test2
           key: testData.branch
       - name: Display Test Data
         run: |
