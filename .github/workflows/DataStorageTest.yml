@@ -17,22 +17,25 @@ jobs:
         with:
           path: ${{ github.workspace }}/test
           key: testData.branch
-      - name: Write Test Data
+      - name: Display Test Data
         run: |
           cat ${{ github.workspace }}/test/data
       - name: Write Test Data
+        if: always()
         run: |
           mkdir -p ${{ github.workspace }}/test 
           touch ${{ github.workspace }}/test/data
           echo "${{ github.ref_name }}" > ${{ github.workspace }}/test/data
           echo "test data" >> ${{ github.workspace }}/test/data
       - name: Clean Cache
+        if: always()
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh extension install actions/gh-actions-cache
           gh actions-cache delete "testData.branch" --confirm -R ${{ github.repository }}
       - name: Save Data
+        if: always()
         uses: actions/cache/save@v4
         with:
           path: ${{ github.workspace }}/test
