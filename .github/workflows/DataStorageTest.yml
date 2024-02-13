@@ -16,7 +16,7 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: ${{ github.workspace }}/test
-          key: testData.main
+          key: testData.branch
       - name: Write Test Data
         run: |
           cat ${{ github.workspace }}/test/data
@@ -31,9 +31,9 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh extension install actions/gh-actions-cache
-          gh actions-cache delete "testData.${{ github.ref_name }}" --confirm -R ${{ github.repository }}
+          gh actions-cache delete "testData.branch" --confirm -R ${{ github.repository }}
       - name: Save Data
         uses: actions/cache/save@v4
         with:
           path: ${{ github.workspace }}/test
-          key: testData.${{ github.ref_name }}
+          key: testData.branch
