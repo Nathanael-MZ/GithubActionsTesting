@@ -7,11 +7,19 @@ permissions:
   # require to delete cache
   # https://docs.github.com/en/rest/actions/cache?apiVersion=2022-11-28#delete-github-actions-caches-for-a-repository-using-a-cache-key
   actions: write
-  
+
 jobs:
   save-data:
     runs-on: ubuntu-latest
     steps:
+      - name: Load Data
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ github.workspace }}/test
+          key: testData.main
+      - name: Write Test Data
+        run: |
+          cat ${{ github.workspace }}/test/data
       - name: Write Test Data
         run: |
           mkdir -p ${{ github.workspace }}/test 
